@@ -1,4 +1,9 @@
-python-dotenv
 streamlit
 google-generativeai
-pillow
+python-dotenv
+langchain
+PyPDF2
+chromadb
+pdf2image
+faiss-cpu
+langchain_google_genai
