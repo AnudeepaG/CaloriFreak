@@ -48,21 +48,44 @@ if uploaded_file:
 if st.button("Analyze Meal"):
     try:
         image_data = prepare_image_data(uploaded_file)
+        
+        # Improved prompt
         prompt = """
-            You are an expert nutritionist who analyzes food items in an image and provides a comprehensive nutritional breakdown.
-            Please use the following format:
+        You are an expert nutritionist and food analyst. Your task is to analyze the image of a meal provided and generate a detailed nutritional breakdown along with other insightful recommendations. Follow this structured format to present the analysis:
 
-            1. Item - Calories: xx, Protein: xxg, Carbs: xxg, Fats: xxg, Fiber: xxg
-            2. Item - Calories: xx, Protein: xxg, Carbs: xxg, Fats: xxg, Fiber: xxg
-            ----
-            ----
-            
-            Additionally:
-            - Summarize the meal type (e.g., main course, snack, dessert).
-            - Suggest healthier alternatives if possible.
-            - Offer portion size recommendations for optimal calorie intake.
-            - Indicate if the item fits specific dietary requirements (e.g., keto, vegan, gluten-free).
+        1. **Nutritional Breakdown**:
+           - **For each identifiable item in the meal**:
+             - Name of the item
+             - Calories: xx kcal
+             - Macronutrients: Protein (xxg), Carbs (xxg), Fats (xxg), Fiber (xxg)
+             - Micronutrients: Mention any significant vitamins or minerals (e.g., Vitamin A, Iron, Calcium).
+
+        2. **Meal Analysis**:
+           - Classify the meal type (e.g., breakfast, main course, snack, dessert).
+           - Identify whether the meal is balanced (covers essential food groups).
+           - Highlight any prominent ingredients or cooking styles (e.g., fried, baked, steamed).
+           - Comment on the meal's suitability for dietary restrictions (e.g., vegan, keto, gluten-free, low-carb).
+
+        3. **Health Recommendations**:
+           - Suggest healthier alternatives for high-calorie or nutrient-deficient items.
+           - Recommend appropriate portion sizes to align with a 2,000 kcal daily diet or a custom dietary goal.
+
+        4. **Allergy and Intolerance Warnings**:
+           - Flag potential allergens (e.g., nuts, dairy, gluten) based on the identified items.
+
+        5. **Meal Optimization**:
+           - Suggest how the meal could be modified for specific goals (e.g., weight loss, muscle gain, improved digestion).
+           - Recommend side dishes or beverages to complement the meal.
+
+        6. **Cultural or Regional Insights (Optional)**:
+           - Provide a brief note if the meal corresponds to any specific cultural, seasonal, or regional food habits.
+
+        **Additional Notes**:
+        - Ensure the response is concise, well-structured, and easy to understand.
+        - If any part of the meal cannot be analyzed confidently, mention it clearly.
+        - Use friendly and engaging language while maintaining professionalism.
         """
+
         response = get_nutrition_analysis(image_data, prompt)
         st.subheader("Nutrition Analysis:")
         st.write(response)
