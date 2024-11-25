@@ -42,7 +42,8 @@ uploaded_file = st.file_uploader("Upload a meal image (jpg, jpeg, png):", type=[
 # Display uploaded image
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+
 
 # Submit button and response section
 if st.button("Analyze Meal"):
