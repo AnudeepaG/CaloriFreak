@@ -142,7 +142,7 @@ genai.configure(api_key=api_key)
 
 # ---- Gemini Vision call ----
 def get_nutrition_analysis(image_data, prompt: str) -> str:
-    model = genai.GenerativeModel("gemini-1.5-flash-latest")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content([prompt, image_data[0]])
     return getattr(response, "text", "") or ""
 
